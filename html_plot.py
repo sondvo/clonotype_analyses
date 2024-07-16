@@ -170,6 +170,9 @@ fig3 = px.box(
     width=500,
 )
 fig3.update_layout(margin_t=150)
+fig3.update_traces(
+    boxpoints='all'
+)
 
 fig4 = px.bar(
     reformated_clonotypes_enrichment_df,
