@@ -1,0 +1,99 @@
+Subjects	Clonotypes types	Ratio
+Normal<<>>Control4003	1 TRA - 1 TRB	0.75457877
+Normal<<>>Control4003	0 TRA - 1 TRB	0.11904762
+Normal<<>>Control4003	1 TRA - 0 TRB	0.013919414
+Normal<<>>Control4003	2 TRA - 1 TRB	0.08424909
+Normal<<>>Control4003	1 TRA - 2 TRB	0.021245422
+Normal<<>>Control4003	2 TRA - 2 TRB	0.006959707
+Normal<<>>Control4003	others	0.0
+Normal<<>>Control0182	1 TRA - 1 TRB	0.2813589
+Normal<<>>Control0182	0 TRA - 1 TRB	0.6820558
+Normal<<>>Control0182	1 TRA - 0 TRB	0.013066202
+Normal<<>>Control0182	2 TRA - 1 TRB	0.013066202
+Normal<<>>Control0182	1 TRA - 2 TRB	0.008710802
+Normal<<>>Control0182	2 TRA - 2 TRB	0.0017421603
+Normal<<>>Control0182	others	0.0
+Normal<<>>Control0082	1 TRA - 1 TRB	0.5918919
+Normal<<>>Control0082	0 TRA - 1 TRB	0.3364865
+Normal<<>>Control0082	1 TRA - 0 TRB	0.022972973
+Normal<<>>Control0082	2 TRA - 1 TRB	0.02972973
+Normal<<>>Control0082	1 TRA - 2 TRB	0.014864865
+Normal<<>>Control0082	2 TRA - 2 TRB	0.004054054
+Normal<<>>Control0082	others	0.0
+Normal<<>>Control0005	1 TRA - 1 TRB	0.58235294
+Normal<<>>Control0005	0 TRA - 1 TRB	0.05882353
+Normal<<>>Control0005	1 TRA - 0 TRB	0.011764706
+Normal<<>>Control0005	2 TRA - 1 TRB	0.13529412
+Normal<<>>Control0005	1 TRA - 2 TRB	0.07058824
+Normal<<>>Control0005	2 TRA - 2 TRB	0.14117648
+Normal<<>>Control0005	others	0.0
+Normal<<>>Control0004	1 TRA - 1 TRB	0.42592424
+Normal<<>>Control0004	0 TRA - 1 TRB	0.481424
+Normal<<>>Control0004	1 TRA - 0 TRB	0.009036969
+Normal<<>>Control0004	2 TRA - 1 TRB	0.03441351
+Normal<<>>Control0004	1 TRA - 2 TRB	0.04418074
+Normal<<>>Control0004	2 TRA - 2 TRB	0.0050205383
+Normal<<>>Control0004	others	0.0
+Acute myeloid leukemia<<>>AML3948	1 TRA - 1 TRB	0.5073836
+Acute myeloid leukemia<<>>AML3948	0 TRA - 1 TRB	0.45172283
+Acute myeloid leukemia<<>>AML3948	1 TRA - 0 TRB	0.0238546
+Acute myeloid leukemia<<>>AML3948	2 TRA - 1 TRB	0.0136312
+Acute myeloid leukemia<<>>AML3948	1 TRA - 2 TRB	0.0034078
+Acute myeloid leukemia<<>>AML3948	2 TRA - 2 TRB	0.0
+Acute myeloid leukemia<<>>AML3948	others	0.0
+Acute myeloid leukemia<<>>AML2975	1 TRA - 1 TRB	0.35242718
+Acute myeloid leukemia<<>>AML2975	0 TRA - 1 TRB	0.6300971
+Acute myeloid leukemia<<>>AML2975	1 TRA - 0 TRB	0.009708738
+Acute myeloid leukemia<<>>AML2975	2 TRA - 1 TRB	0.004854369
+Acute myeloid leukemia<<>>AML2975	1 TRA - 2 TRB	0.0029126212
+Acute myeloid leukemia<<>>AML2975	2 TRA - 2 TRB	0.0
+Acute myeloid leukemia<<>>AML2975	others	0.0
+Acute myeloid leukemia<<>>AML2910	1 TRA - 1 TRB	0.5512465
+Acute myeloid leukemia<<>>AML2910	0 TRA - 1 TRB	0.41828254
+Acute myeloid leukemia<<>>AML2910	1 TRA - 0 TRB	0.008310249
+Acute myeloid leukemia<<>>AML2910	2 TRA - 1 TRB	0.019390581
+Acute myeloid leukemia<<>>AML2910	1 TRA - 2 TRB	0.002770083
+Acute myeloid leukemia<<>>AML2910	2 TRA - 2 TRB	0.0
+Acute myeloid leukemia<<>>AML2910	others	0.0
+Acute myeloid leukemia<<>>AML1133	1 TRA - 1 TRB	0.63205415
+Acute myeloid leukemia<<>>AML1133	0 TRA - 1 TRB	0.3115124
+Acute myeloid leukemia<<>>AML1133	1 TRA - 0 TRB	0.015801355
+Acute myeloid leukemia<<>>AML1133	2 TRA - 1 TRB	0.03160271
+Acute myeloid leukemia<<>>AML1133	1 TRA - 2 TRB	0.006772009
+Acute myeloid leukemia<<>>AML1133	2 TRA - 2 TRB	0.0022573364
+Acute myeloid leukemia<<>>AML1133	others	0.0
+Acute myeloid leukemia<<>>AML0693	1 TRA - 1 TRB	0.5301205
+Acute myeloid leukemia<<>>AML0693	0 TRA - 1 TRB	0.4006024
+Acute myeloid leukemia<<>>AML0693	1 TRA - 0 TRB	0.021084337
+Acute myeloid leukemia<<>>AML0693	2 TRA - 1 TRB	0.03313253
+Acute myeloid leukemia<<>>AML0693	1 TRA - 2 TRB	0.015060241
+Acute myeloid leukemia<<>>AML0693	2 TRA - 2 TRB	0.0
+Acute myeloid leukemia<<>>AML0693	others	0.0
+Acute myeloid leukemia<<>>AML052	1 TRA - 1 TRB	0.66042155
+Acute myeloid leukemia<<>>AML052	0 TRA - 1 TRB	0.26697892
+Acute myeloid leukemia<<>>AML052	1 TRA - 0 TRB	0.025761124
+Acute myeloid leukemia<<>>AML052	2 TRA - 1 TRB	0.021077283
+Acute myeloid leukemia<<>>AML052	1 TRA - 2 TRB	0.025761124
+Acute myeloid leukemia<<>>AML052	2 TRA - 2 TRB	0.0
+Acute myeloid leukemia<<>>AML052	others	0.0
+Acute myeloid leukemia<<>>AML0134	1 TRA - 1 TRB	0.6008658
+Acute myeloid leukemia<<>>AML0134	0 TRA - 1 TRB	0.35064936
+Acute myeloid leukemia<<>>AML0134	1 TRA - 0 TRB	0.029437229
+Acute myeloid leukemia<<>>AML0134	2 TRA - 1 TRB	0.012121212
+Acute myeloid leukemia<<>>AML0134	1 TRA - 2 TRB	0.0043290043
+Acute myeloid leukemia<<>>AML0134	2 TRA - 2 TRB	0.0025974025
+Acute myeloid leukemia<<>>AML0134	others	0.0
+Acute myeloid leukemia<<>>AML0102	1 TRA - 1 TRB	0.79843664
+Acute myeloid leukemia<<>>AML0102	0 TRA - 1 TRB	0.12004467
+Acute myeloid leukemia<<>>AML0102	1 TRA - 0 TRB	0.025683975
+Acute myeloid leukemia<<>>AML0102	2 TRA - 1 TRB	0.046901174
+Acute myeloid leukemia<<>>AML0102	1 TRA - 2 TRB	0.003908431
+Acute myeloid leukemia<<>>AML0102	2 TRA - 2 TRB	0.0050251256
+Acute myeloid leukemia<<>>AML0102	others	0.0
+Acute myeloid leukemia<<>>AML009	1 TRA - 1 TRB	0.5948718
+Acute myeloid leukemia<<>>AML009	0 TRA - 1 TRB	0.25128207
+Acute myeloid leukemia<<>>AML009	1 TRA - 0 TRB	0.020512821
+Acute myeloid leukemia<<>>AML009	2 TRA - 1 TRB	0.06666667
+Acute myeloid leukemia<<>>AML009	1 TRA - 2 TRB	0.051282052
+Acute myeloid leukemia<<>>AML009	2 TRA - 2 TRB	0.015384615
+Acute myeloid leukemia<<>>AML009	others	0.0
