@@ -1,0 +1,155 @@
+	Groups	Clonotypes size	Ratio
+0	Acute myeloid leukemia<<>>AML009	n = 1	0.9285714285714286
+1	Acute myeloid leukemia<<>>AML009	n = 2	0.07142857142857142
+2	Acute myeloid leukemia<<>>AML009	n = 3	0.0
+3	Acute myeloid leukemia<<>>AML009	n = 4	0.0
+4	Acute myeloid leukemia<<>>AML009	n = 5	0.0
+5	Acute myeloid leukemia<<>>AML009	n = 6	0.0
+6	Acute myeloid leukemia<<>>AML009	n = 7	0.0
+7	Acute myeloid leukemia<<>>AML009	n = 8	0.0
+8	Acute myeloid leukemia<<>>AML009	n = 9	0.0
+9	Acute myeloid leukemia<<>>AML009	n = 10	0.0
+10	Acute myeloid leukemia<<>>AML009	n > 10	0.0
+11	Acute myeloid leukemia<<>>AML0102	n = 1	0.926775956284153
+12	Acute myeloid leukemia<<>>AML0102	n = 2	0.03169398907103825
+13	Acute myeloid leukemia<<>>AML0102	n = 3	0.009836065573770493
+14	Acute myeloid leukemia<<>>AML0102	n = 4	0.003278688524590164
+15	Acute myeloid leukemia<<>>AML0102	n = 5	0.003278688524590164
+16	Acute myeloid leukemia<<>>AML0102	n = 6	0.001092896174863388
+17	Acute myeloid leukemia<<>>AML0102	n = 7	0.001092896174863388
+18	Acute myeloid leukemia<<>>AML0102	n = 8	0.002185792349726776
+19	Acute myeloid leukemia<<>>AML0102	n = 9	0.0
+20	Acute myeloid leukemia<<>>AML0102	n = 10	0.0
+21	Acute myeloid leukemia<<>>AML0102	n > 10	0.020765027322404372
+22	Acute myeloid leukemia<<>>AML0134	n = 1	0.7617801047120419
+23	Acute myeloid leukemia<<>>AML0134	n = 2	0.09162303664921466
+24	Acute myeloid leukemia<<>>AML0134	n = 3	0.020942408376963352
+25	Acute myeloid leukemia<<>>AML0134	n = 4	0.01832460732984293
+26	Acute myeloid leukemia<<>>AML0134	n = 5	0.013089005235602094
+27	Acute myeloid leukemia<<>>AML0134	n = 6	0.015706806282722512
+28	Acute myeloid leukemia<<>>AML0134	n = 7	0.005235602094240838
+29	Acute myeloid leukemia<<>>AML0134	n = 8	0.002617801047120419
+30	Acute myeloid leukemia<<>>AML0134	n = 9	0.010471204188481676
+31	Acute myeloid leukemia<<>>AML0134	n = 10	0.002617801047120419
+32	Acute myeloid leukemia<<>>AML0134	n > 10	0.05759162303664921
+33	Acute myeloid leukemia<<>>AML052	n = 1	0.8296703296703297
+34	Acute myeloid leukemia<<>>AML052	n = 2	0.06593406593406594
+35	Acute myeloid leukemia<<>>AML052	n = 3	0.016483516483516484
+36	Acute myeloid leukemia<<>>AML052	n = 4	0.01098901098901099
+37	Acute myeloid leukemia<<>>AML052	n = 5	0.005494505494505495
+38	Acute myeloid leukemia<<>>AML052	n = 6	0.016483516483516484
+39	Acute myeloid leukemia<<>>AML052	n = 7	0.0
+40	Acute myeloid leukemia<<>>AML052	n = 8	0.005494505494505495
+41	Acute myeloid leukemia<<>>AML052	n = 9	0.005494505494505495
+42	Acute myeloid leukemia<<>>AML052	n = 10	0.0
+43	Acute myeloid leukemia<<>>AML052	n > 10	0.04395604395604396
+44	Acute myeloid leukemia<<>>AML0693	n = 1	0.8054054054054054
+45	Acute myeloid leukemia<<>>AML0693	n = 2	0.08648648648648649
+46	Acute myeloid leukemia<<>>AML0693	n = 3	0.03783783783783784
+47	Acute myeloid leukemia<<>>AML0693	n = 4	0.005405405405405406
+48	Acute myeloid leukemia<<>>AML0693	n = 5	0.010810810810810811
+49	Acute myeloid leukemia<<>>AML0693	n = 6	0.010810810810810811
+50	Acute myeloid leukemia<<>>AML0693	n = 7	0.005405405405405406
+51	Acute myeloid leukemia<<>>AML0693	n = 8	0.005405405405405406
+52	Acute myeloid leukemia<<>>AML0693	n = 9	0.005405405405405406
+53	Acute myeloid leukemia<<>>AML0693	n = 10	0.005405405405405406
+54	Acute myeloid leukemia<<>>AML0693	n > 10	0.021621621621621623
+55	Acute myeloid leukemia<<>>AML1133	n = 1	0.8515901060070671
+56	Acute myeloid leukemia<<>>AML1133	n = 2	0.08480565371024736
+57	Acute myeloid leukemia<<>>AML1133	n = 3	0.014134275618374558
+58	Acute myeloid leukemia<<>>AML1133	n = 4	0.014134275618374558
+59	Acute myeloid leukemia<<>>AML1133	n = 5	0.007067137809187279
+60	Acute myeloid leukemia<<>>AML1133	n = 6	0.0035335689045936395
+61	Acute myeloid leukemia<<>>AML1133	n = 7	0.007067137809187279
+62	Acute myeloid leukemia<<>>AML1133	n = 8	0.0035335689045936395
+63	Acute myeloid leukemia<<>>AML1133	n = 9	0.0
+64	Acute myeloid leukemia<<>>AML1133	n = 10	0.0035335689045936395
+65	Acute myeloid leukemia<<>>AML1133	n > 10	0.01060070671378092
+66	Acute myeloid leukemia<<>>AML2910	n = 1	0.8070175438596491
+67	Acute myeloid leukemia<<>>AML2910	n = 2	0.07017543859649122
+68	Acute myeloid leukemia<<>>AML2910	n = 3	0.04093567251461988
+69	Acute myeloid leukemia<<>>AML2910	n = 4	0.011695906432748537
+70	Acute myeloid leukemia<<>>AML2910	n = 5	0.005847953216374269
+71	Acute myeloid leukemia<<>>AML2910	n = 6	0.005847953216374269
+72	Acute myeloid leukemia<<>>AML2910	n = 7	0.0
+73	Acute myeloid leukemia<<>>AML2910	n = 8	0.005847953216374269
+74	Acute myeloid leukemia<<>>AML2910	n = 9	0.0
+75	Acute myeloid leukemia<<>>AML2910	n = 10	0.005847953216374269
+76	Acute myeloid leukemia<<>>AML2910	n > 10	0.04678362573099415
+77	Acute myeloid leukemia<<>>AML2975	n = 1	0.8878676470588235
+78	Acute myeloid leukemia<<>>AML2975	n = 2	0.042279411764705885
+79	Acute myeloid leukemia<<>>AML2975	n = 3	0.02389705882352941
+80	Acute myeloid leukemia<<>>AML2975	n = 4	0.011029411764705883
+81	Acute myeloid leukemia<<>>AML2975	n = 5	0.0055147058823529415
+82	Acute myeloid leukemia<<>>AML2975	n = 6	0.003676470588235294
+83	Acute myeloid leukemia<<>>AML2975	n = 7	0.0
+84	Acute myeloid leukemia<<>>AML2975	n = 8	0.0
+85	Acute myeloid leukemia<<>>AML2975	n = 9	0.0055147058823529415
+86	Acute myeloid leukemia<<>>AML2975	n = 10	0.007352941176470588
+87	Acute myeloid leukemia<<>>AML2975	n > 10	0.012867647058823529
+88	Acute myeloid leukemia<<>>AML3948	n = 1	0.8528225806451613
+89	Acute myeloid leukemia<<>>AML3948	n = 2	0.06653225806451613
+90	Acute myeloid leukemia<<>>AML3948	n = 3	0.019153225806451613
+91	Acute myeloid leukemia<<>>AML3948	n = 4	0.010080645161290322
+92	Acute myeloid leukemia<<>>AML3948	n = 5	0.007056451612903226
+93	Acute myeloid leukemia<<>>AML3948	n = 6	0.0030241935483870967
+94	Acute myeloid leukemia<<>>AML3948	n = 7	0.011088709677419355
+95	Acute myeloid leukemia<<>>AML3948	n = 8	0.004032258064516129
+96	Acute myeloid leukemia<<>>AML3948	n = 9	0.0010080645161290322
+97	Acute myeloid leukemia<<>>AML3948	n = 10	0.0020161290322580645
+98	Acute myeloid leukemia<<>>AML3948	n > 10	0.023185483870967742
+99	Normal<<>>Control0004	n = 1	0.9561415879283599
+100	Normal<<>>Control0004	n = 2	0.018192074460583837
+101	Normal<<>>Control0004	n = 3	0.006346072486250176
+102	Normal<<>>Control0004	n = 4	0.004230714990833451
+103	Normal<<>>Control0004	n = 5	0.001833309829361162
+104	Normal<<>>Control0004	n = 6	0.0012692144972500353
+105	Normal<<>>Control0004	n = 7	0.0016922859963333804
+106	Normal<<>>Control0004	n = 8	0.0008461429981666902
+107	Normal<<>>Control0004	n = 9	0.0008461429981666902
+108	Normal<<>>Control0004	n = 10	0.0005640953321111268
+109	Normal<<>>Control0004	n > 10	0.008038358482583557
+110	Normal<<>>Control0005	n = 1	0.9235668789808917
+111	Normal<<>>Control0005	n = 2	0.07006369426751592
+112	Normal<<>>Control0005	n = 3	0.006369426751592357
+113	Normal<<>>Control0005	n = 4	0.0
+114	Normal<<>>Control0005	n = 5	0.0
+115	Normal<<>>Control0005	n = 6	0.0
+116	Normal<<>>Control0005	n = 7	0.0
+117	Normal<<>>Control0005	n = 8	0.0
+118	Normal<<>>Control0005	n = 9	0.0
+119	Normal<<>>Control0005	n = 10	0.0
+120	Normal<<>>Control0005	n > 10	0.0
+121	Normal<<>>Control0082	n = 1	0.891588785046729
+122	Normal<<>>Control0082	n = 2	0.052336448598130844
+123	Normal<<>>Control0082	n = 3	0.028037383177570093
+124	Normal<<>>Control0082	n = 4	0.007476635514018692
+125	Normal<<>>Control0082	n = 5	0.003738317757009346
+126	Normal<<>>Control0082	n = 6	0.0
+127	Normal<<>>Control0082	n = 7	0.003738317757009346
+128	Normal<<>>Control0082	n = 8	0.001869158878504673
+129	Normal<<>>Control0082	n = 9	0.001869158878504673
+130	Normal<<>>Control0082	n = 10	0.0
+131	Normal<<>>Control0082	n > 10	0.009345794392523364
+132	Normal<<>>Control0182	n = 1	0.8688760806916427
+133	Normal<<>>Control0182	n = 2	0.0446685878962536
+134	Normal<<>>Control0182	n = 3	0.020172910662824207
+135	Normal<<>>Control0182	n = 4	0.012968299711815562
+136	Normal<<>>Control0182	n = 5	0.01729106628242075
+137	Normal<<>>Control0182	n = 6	0.005763688760806916
+138	Normal<<>>Control0182	n = 7	0.007204610951008645
+139	Normal<<>>Control0182	n = 8	0.001440922190201729
+140	Normal<<>>Control0182	n = 9	0.007204610951008645
+141	Normal<<>>Control0182	n = 10	0.001440922190201729
+142	Normal<<>>Control0182	n > 10	0.012968299711815562
+143	Normal<<>>Control4003	n = 1	0.5940879596250901
+144	Normal<<>>Control4003	n = 2	0.32227829848594086
+145	Normal<<>>Control4003	n = 3	0.029560201874549386
+146	Normal<<>>Control4003	n = 4	0.015861571737563085
+147	Normal<<>>Control4003	n = 5	0.007930785868781542
+148	Normal<<>>Control4003	n = 6	0.004325883201153569
+149	Normal<<>>Control4003	n = 7	0.0021629416005767843
+150	Normal<<>>Control4003	n = 8	0.003604902667627974
+151	Normal<<>>Control4003	n = 9	0.0014419610670511895
+152	Normal<<>>Control4003	n = 10	0.002883922134102379
+153	Normal<<>>Control4003	n > 10	0.015861571737563085

@@ -32,21 +32,21 @@ reformated_single_ambiguos_clonotypes_df = pd.DataFrame(reformated_single_ambigu
 # fig3: clonotypes diversity estimation: Shannon entropy
 shannon_df = pd.read_csv(DATA_DIR + '/shannon_df.tsv', sep='\t', index_col=0)
 
-# fig4: clonotypes enrichment:
-clonotypes_enrichment = pd.read_csv(DATA_DIR + '/clono_proportion_df.tsv', sep='\t', index_col=0)
-reformated_clonotypes_enrichment_dct = {
+# fig4: clonotypes expansion:
+clonotypes_expansion = pd.read_csv(DATA_DIR + '/clono_expansion_df.tsv.tsv', sep='\t', index_col=0)
+reformated_clonotypes_expansion_dct = {
     'subject id': [],
     'Clonotypes size': [],
     'ratio': []
 }
-for i in clonotypes_enrichment.index:
-    for j in clonotypes_enrichment.columns:
-        reformated_clonotypes_enrichment_dct['subject id'].append(i)
-        reformated_clonotypes_enrichment_dct['Clonotypes size'].append(j)
-        reformated_clonotypes_enrichment_dct['ratio'].append(
-            clonotypes_enrichment.loc[i, j]
+for i in clonotypes_expansion.index:
+    for j in clonotypes_expansion.columns:
+        reformated_clonotypes_expansion_dct['subject id'].append(i)
+        reformated_clonotypes_expansion_dct['Clonotypes size'].append(j)
+        reformated_clonotypes_expansion_dct['ratio'].append(
+            clonotypes_expansion.loc[i, j]
         )
-reformated_clonotypes_enrichment_df = pd.DataFrame(reformated_clonotypes_enrichment_dct)
+reformated_clonotypes_expansion_df = pd.DataFrame(reformated_clonotypes_expansion_dct)
 
 # fig5: cdr3 alpha, beta length:
 cdr3_alpha_length = pd.read_csv(DATA_DIR + '/cdr3alpha_length_df.tsv', sep='\t', index_col=0)
@@ -175,7 +175,7 @@ fig3.update_traces(
 )
 
 fig4 = px.bar(
-    reformated_clonotypes_enrichment_df,
+    reformated_clonotypes_expansion_df,
     x="subject id",
     y="ratio",
     title='''Clononal Expansion<br><br>
