@@ -15,17 +15,17 @@ PLOTLY_DATA_DIR = DATA_DIR + '/plotly_data'
 clinical_meta = pd.read_csv('GSE185381_TCR/clinical_metadata.tsv', sep='\t')
 
 # fig2: single, ambigous clonotypes proportion
-reformated_single_ambiguos_clonotypes_df = pd.read_csv(PLOTLY_DATA_DIR + '/fraction_clo_df.tsv', sep='\t')
+single_ambiguos_clonotypes_df = pd.read_csv(PLOTLY_DATA_DIR + '/fraction_clo_df.tsv', sep='\t')
 
 # fig3: clonotypes diversity estimation: Shannon entropy
 shannon_df = pd.read_csv(PLOTLY_DATA_DIR + '/shannon_df.tsv', sep='\t')
 
 # fig4: clonotypes expansion:
-reformated_clonotypes_expansion_df = pd.read_csv(PLOTLY_DATA_DIR + '/clono_expansion_df.tsv', sep='\t')
+clonotypes_expansion_df = pd.read_csv(PLOTLY_DATA_DIR + '/clono_expansion_df.tsv', sep='\t')
 
 # fig5: cdr3 alpha, beta length:
-reformated_cdr3_alpha_length_df = pd.read_csv(PLOTLY_DATA_DIR + '/cdr3alpha_length_df.tsv', sep='\t')
-reformated_cdr3_beta_length_df = pd.read_csv(PLOTLY_DATA_DIR + '/cdr3beta_length_df.tsv', sep='\t')
+cdr3_alpha_length_df = pd.read_csv(PLOTLY_DATA_DIR + '/cdr3alpha_length_df.tsv', sep='\t')
+cdr3_beta_length_df = pd.read_csv(PLOTLY_DATA_DIR + '/cdr3beta_length_df.tsv', sep='\t')
 
 # # fig6: UMAP simplified cell type + UMAP condition proportions
 # UMAP_scatter_pie = pd.read_csv(DATA_DIR + '/UMAP_porportion.tsv', sep='\t')
@@ -89,7 +89,7 @@ fig13.update_layout(margin_t=50, margin_r=300)
 
 
 fig2 = px.bar(
-    reformated_single_ambiguos_clonotypes_df,
+    single_ambiguos_clonotypes_df,
     x='Subjects',
     y="Ratio",
     title='''Ratio of Single / Ambiguous Clonotypes<br><br>
@@ -123,7 +123,7 @@ fig3.update_traces(
 )
 
 fig4 = px.bar(
-    reformated_clonotypes_expansion_df,
+    clonotypes_expansion_df,
     x="Groups",
     y="Ratio",
     title='''Clononal Expansion<br><br>
@@ -139,11 +139,11 @@ fig4 = px.bar(
 fig4.update_layout(margin_t=150)
 
 max_cdr3_ratio = max(
-    max(reformated_cdr3_alpha_length_df['Ratio'].values),
-    max(reformated_cdr3_beta_length_df['Ratio'].values),
+    max(cdr3_alpha_length_df['Ratio'].values),
+    max(cdr3_beta_length_df['Ratio'].values),
 )
 fig5 = px.line(
-    reformated_cdr3_alpha_length_df,
+    cdr3_alpha_length_df,
     x="CDR3 length",
     y="Ratio",
     color="Condition",
@@ -156,7 +156,7 @@ fig5.update_layout(yaxis_range=[0, max_cdr3_ratio + 0.05])
 fig5.update_layout(margin_t=50)
 
 fig6 = px.line(
-    reformated_cdr3_beta_length_df,
+    cdr3_beta_length_df,
     x="CDR3 length",
     y="Ratio",
     color="Condition",
