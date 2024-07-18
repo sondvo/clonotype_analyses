@@ -27,14 +27,15 @@ clonotypes_expansion_df = pd.read_csv(PLOTLY_DATA_DIR + '/clono_expansion_df.tsv
 cdr3_alpha_length_df = pd.read_csv(PLOTLY_DATA_DIR + '/cdr3alpha_length_df.tsv', sep='\t')
 cdr3_beta_length_df = pd.read_csv(PLOTLY_DATA_DIR + '/cdr3beta_length_df.tsv', sep='\t')
 
-# # fig6: UMAP simplified cell type + UMAP condition proportions
-# UMAP_scatter_pie = pd.read_csv(DATA_DIR + '/UMAP_porportion.tsv', sep='\t')
+# # fig6: clonotypes tracing
+clonotype_tracing_bar_df = pd.read_csv(PLOTLY_DATA_DIR + '/clono_tracing_bar_df.tsv', sep='\t')
+clonotype_tracing_scatter_df = pd.read_csv(PLOTLY_DATA_DIR + '/clono_tracing_scatter_df.tsv', sep='\t')
 
 
 app = dash.Dash(__name__)
 app.config.suppress_callback_exceptions = True
 
-fig1 = px.scatter(
+fig1_1 = px.scatter(
     clinical_meta,
     x='X_UMAP',
     y='Y_UMAP',
@@ -44,23 +45,24 @@ fig1 = px.scatter(
     height=500,
     width=900,
 )
-fig1.update_traces(marker={'size': 5})
-fig1.update_layout(margin_t=50, margin_r=300)
+fig1_1.update_traces(marker={'size': 3})
+fig1_1.update_layout(margin_t=50, margin_r=300)
 
-fig11 = px.scatter(
+fig1_2 = px.scatter(
     clinical_meta,
     x='X_UMAP',
     y='Y_UMAP',
     title='UMAP 2',
     color="simplified_celltype",
     labels={'color': "simplified_celltype"},
+    category_orders={"simplified_celltype": ['naive / central memory T cells', 'transitional T cells', 'terminal effector T cells']},
     height=500,
     width=900,
 )
-fig11.update_traces(marker={'size': 5})
-fig11.update_layout(margin_t=50, margin_r=300)
+fig1_2.update_traces(marker={'size': 3})
+fig1_2.update_layout(margin_t=50, margin_r=300)
 
-fig12 = px.scatter(
+fig1_3 = px.scatter(
     clinical_meta,
     x='X_UMAP',
     y='Y_UMAP',
@@ -70,10 +72,10 @@ fig12 = px.scatter(
     height=500,
     width=900,
 )
-fig12.update_traces(marker={'size': 5})
-fig12.update_layout(margin_t=50, margin_r=300)
+fig1_3.update_traces(marker={'size': 3})
+fig1_3.update_layout(margin_t=50, margin_r=300)
 
-fig13 = px.scatter(
+fig1_4 = px.scatter(
     clinical_meta,
     x='X_UMAP',
     y='Y_UMAP',
@@ -84,9 +86,10 @@ fig13 = px.scatter(
     width=900,
     category_orders={"Subject ID": sorted(clinical_meta['Subject ID'].unique())[::-1]}
 )
-fig13.update_traces(marker={'size': 5})
-fig13.update_layout(margin_t=50, margin_r=300)
+fig1_4.update_traces(marker={'size': 3})
+fig1_4.update_layout(margin_t=50, margin_r=300)
 
+###
 
 fig2 = px.bar(
     single_ambiguos_clonotypes_df,
@@ -103,6 +106,8 @@ fig2 = px.bar(
     width=1000,
 )
 fig2.update_layout(margin_t=150)
+
+###
 
 fig3 = px.box(
     shannon_df,
@@ -122,6 +127,8 @@ fig3.update_traces(
     boxpoints='all'
 )
 
+###
+
 fig4 = px.bar(
     clonotypes_expansion_df,
     x="Groups",
@@ -138,11 +145,13 @@ fig4 = px.bar(
 )
 fig4.update_layout(margin_t=150)
 
+####
+
 max_cdr3_ratio = max(
     max(cdr3_alpha_length_df['Ratio'].values),
     max(cdr3_beta_length_df['Ratio'].values),
 )
-fig5 = px.line(
+fig5_1 = px.line(
     cdr3_alpha_length_df,
     x="CDR3 length",
     y="Ratio",
@@ -152,10 +161,10 @@ fig5 = px.line(
     title='CDR3 - Alpha Length across Conditions',
     markers=True
 )
-fig5.update_layout(yaxis_range=[0, max_cdr3_ratio + 0.05])
-fig5.update_layout(margin_t=50)
+fig5_1.update_layout(yaxis_range=[0, max_cdr3_ratio + 0.05])
+fig5_1.update_layout(margin_t=50)
 
-fig6 = px.line(
+fig5_2 = px.line(
     cdr3_beta_length_df,
     x="CDR3 length",
     y="Ratio",
@@ -165,8 +174,53 @@ fig6 = px.line(
     title='CDR3 - Beta Length across Conditions',
     markers=True
 )
-fig6.update_layout(yaxis_range=[0, max_cdr3_ratio + 0.05])
-fig6.update_layout(margin_t=50)
+fig5_2.update_layout(yaxis_range=[0, max_cdr3_ratio + 0.05])
+fig5_2.update_layout(margin_t=50)
+
+###
+
+fig6_1 = px.bar(
+    clonotype_tracing_bar_df,
+    x="Groups",
+    y="Ratio",
+    title='''Clononal Tracing across Groups<br><br>
+    <sup> Ratio of TCR clonotypes across groups<br>
+    Some diseases / celltypes favors specific clonotype sequences. These 5 clonotypes are the most common across them.
+    </sup>
+    ''',
+    color="Clonotypes",
+    category_orders={"Groups": ['naive / central memory T cells', 'transitional T cells', 'terminal effector T cells']},
+    barmode='stack',
+    height=700,
+    width=1000,
+)
+fig6_1.update_layout(margin_t=150)
+
+fig6_3 = px.scatter(
+    clonotype_tracing_scatter_df,
+    x='X_UMAP',
+    y='Y_UMAP',
+    color="cdr3",
+    labels={'color': "cdr3"},
+    height=500,
+    width=900,
+    size='umis',
+)
+fig6_3.add_trace(px.scatter(
+    clinical_meta,
+    x='X_UMAP',
+    y='Y_UMAP',
+    title='UMAP',
+    color_discrete_sequence=['gray'],
+    height=500,
+    width=900,
+    opacity=0.01
+).data[0])
+fig6_3.update_layout(margin_t=50, margin_r=300)
+fig6_3.data = (fig6_3.data[-1], *fig6_3.data[:-1])
+fig6_3.data = fig6_3.data[::-1]
+
+###
 
 app.layout = html.Div(
     children=[
@@ -175,12 +229,12 @@ app.layout = html.Div(
             style={'textAlign': 'center', 'color': '#503D36', 'font-size': 40}
         ),
         html.Div([
-            dcc.Graph(figure=fig1),
-            dcc.Graph(figure=fig11),
+            dcc.Graph(figure=fig1_1),
+            dcc.Graph(figure=fig1_2),
         ], style={'display': 'flex', 'justify-content': 'center'}),
         html.Div([
-            dcc.Graph(figure=fig12),
-            dcc.Graph(figure=fig13),
+            dcc.Graph(figure=fig1_3),
+            dcc.Graph(figure=fig1_4),
         ], style={'display': 'flex', 'justify-content': 'center'}),
         html.Div([
             dcc.Graph(figure=fig2)
@@ -192,8 +246,15 @@ app.layout = html.Div(
             dcc.Graph(figure=fig4)
         ], style={'display': 'flex', 'justify-content': 'center'}),
         html.Div([
-            dcc.Graph(figure=fig5),
-            dcc.Graph(figure=fig6),
+            dcc.Graph(figure=fig5_1),
+            dcc.Graph(figure=fig5_2),
+        ], style={'display': 'flex', 'justify-content': 'center'}),
+        html.Div([
+            dcc.Graph(figure=fig6_1)
+        ], style={'display': 'flex', 'justify-content': 'center'}),
+        html.Div([
+            dcc.Graph(figure=fig1_2),
+            dcc.Graph(figure=fig6_3),
         ], style={'display': 'flex', 'justify-content': 'center'}),
     ]
 )
