@@ -1,5 +1,7 @@
 # clonotype_analyses
-Processing, analyzing, and visualizing TCR/BCR
+- Processing, analyzing, and visualizing TCR/BCR.
+- Every analysis will have charts from both [matplotlib](./TCR_analysis_cleanup.ipynb) and [plotly](./html_plot.py)
+
 
 ## 1. GSE185381
 - Link: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE185381
