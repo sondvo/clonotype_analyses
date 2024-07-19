@@ -206,7 +206,7 @@ fig6_3 = px.scatter(
     width=900,
     size='umis',
 )
-fig6_3.add_trace(px.scatter(
+fig6_4 = px.scatter(
     clinical_meta,
     x='X_UMAP',
     y='Y_UMAP',
@@ -215,10 +215,10 @@ fig6_3.add_trace(px.scatter(
     height=500,
     width=900,
     opacity=0.01
-).data[0])
+)
+fig6_4.update_traces(hoverinfo='skip', hovertemplate=None)
+fig6_3.add_trace(fig6_4.data[0])
 fig6_3.update_layout(margin_t=50, margin_r=300)
-fig6_3.data = (fig6_3.data[-1], *fig6_3.data[:-1])
-fig6_3.data = fig6_3.data[::-1]
 
 ###
 
