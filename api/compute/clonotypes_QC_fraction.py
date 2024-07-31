@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 
+from .. import common
+
 
 def _merge_metadata_fields(VDJ_10X, keys=['Condition']):
 	if len(keys) == 1 and keys[0] in VDJ_10X.columns:
@@ -33,11 +35,13 @@ def _init_clonotypes_types(all_cells, meta_key):
 	fraction_clo_dct = {
 		'barcode': all_cells,
 		'1 TRA - 1 TRB': np.zeros(n_cells, dtype=np.bool_),
+		'2 TRA - 2 TRB': np.zeros(n_cells, dtype=np.bool_),
 		'0 TRA - 1 TRB': np.zeros(n_cells, dtype=np.bool_),
+		'0 TRA - 2 TRB': np.zeros(n_cells, dtype=np.bool_),
 		'1 TRA - 0 TRB': np.zeros(n_cells, dtype=np.bool_),
+		'2 TRA - 0 TRB': np.zeros(n_cells, dtype=np.bool_),
 		'2 TRA - 1 TRB': np.zeros(n_cells, dtype=np.bool_),
 		'1 TRA - 2 TRB': np.zeros(n_cells, dtype=np.bool_),
-		'2 TRA - 2 TRB': np.zeros(n_cells, dtype=np.bool_),
 		'others': np.zeros(n_cells, dtype=np.bool_),
 		meta_key: np.array([''] * n_cells),
 	}
@@ -86,6 +90,7 @@ def grouping_ratio_clonotype_types(fraction_clo_df, meta_key):
 
 	visualize_fraction_clo_df = visualize_fraction_clo_df.sort_index(ascending=False)
 	return visualize_fraction_clo_df
+
 
 def plotly_ratio_clonotype_types(fraction_clo_df, meta_key):
 	fraction_clo_df = grouping_ratio_clonotype_types(fraction_clo_df, meta_key)
