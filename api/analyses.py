@@ -1,86 +1,89 @@
 import pandas as pd
 from typing import List
+from typing import Dict
+
+from .compute import processing
+from .compute import clonotypes_tracing
+from .compute import clonotypes_expansion
+from .compute import clonotypes_QC_fraction
+from .compute import clonotypes_diversity_rate
 
 from . import common
-from .compute import processing
+from .common.constants import VDJ_10X_COLUMNS
 
 
 class ClonotypePreprocessing(object):
 	def __init__(
 		self,
-		vdj_path: List[str],
+		batch_info: List[Dict],
 		ouput_h5_path: str,
 		preprocessing: bool = True,
-		add_prefix: bool = True,
-		prefixes: List[str] = None,
 	):
-		self.__vdj_path = vdj_path
+		"""
+		Create object for preprocessing clonotypes data
+
+		Parameters
+		----------
+		batch_info : List[dict]
+			Allow merging multiple VDJ samples\n
+			For each sample, barcodes of vdj_df and clinical_meta_df MUST have similar items \n
+			Example:
+				[{
+					'sample_name': 'sample_1',\n
+					'vdj_path': 'root/fol/GSM123_vdj_t_filtered_contig_annotations.csv',\n
+					'clinical_meta_path': 'root/fol/GSM123_clinical_meta.tsv',
+				}, {...}]
+		"""
+		self.__batch_info = batch_info
 		self.__ouput_h5_path = ouput_h5_path
 		self.__preprocessing = preprocessing
-		self.__add_prefix = add_prefix
-		self.__prefixes = prefixes
-
-
-	def _write_h5_vdj(
-			self,
-			vdj_df
-		):
-		processing.write_hdf5_vdj(vdj_df, self.__ouput_h5_path)
-		return self.__ouput_h5_path
 
 
 	def processing_vdj(self):
-		DF = None
-		for i in self.__vdj_path:
-			df_path = self.__vdj_path[i]
-			df = processing.reformat_clonotypes(df_path, self.__preprocessing)
+		"""
+		Only keep necessary columns in VDJ file\n
+		Match barcodes between VDJ and clinical metadata
+		"""
+		final_vdj_df = None
+		final_clinical_df = None
+		for info in self.__batch_info:
+			prefix = info.get('sample_name', '')
+			vdj_path = info['vdj_path']
+			clinical_path = info['clinical_meta_path']
 
-			if self.__add_prefix:
-				if self.__prefixes is None:
-					df_file_name = common.get_file_name(df_path)
-					prefix = df_file_name.replace('_contig_annotations.csv', '')
-				else:
-					prefix = self.__prefixes[i]
-				df.index = prefix + '_' + df.index.values
+			vdj_df = processing.reformat_clonotypes(vdj_path, self.__preprocessing)
+			clinical_df = common.read_csv(clinical_path, index_col=0)
 
-			if DF is None:
-				DF = df
-			else:
-				DF = pd.concat([DF, df], axis=0)
+			if len(prefix):
+				vdj_df[
+					VDJ_10X_COLUMNS.BARCODES.value
+				] = prefix + '_' + vdj_df[VDJ_10X_COLUMNS.BARCODES.value].values
+				vdj_df['sample_name'] = prefix
 
-		return DF
+				clinical_df.index = prefix + '_' + clinical_df.index.values
+				clinical_df['sample_name'] = prefix
 
-
-	def merge_with_clinical_meta(
-			self,
-			reformated_vdj_df,
-			input_clincal_path: str,
-			output_clincal_path: str,
-		):
-		vdj_df, clinical_df = processing.merge_with_clinical_meta(
-			reformated_vdj_df,
-			input_clincal_path,
-			output_clincal_path
-		)
-		common.write_csv(clinical_df, output_clincal_path)
-		return vdj_df, clinical_df
+			final_vdj_df = common.concat_df([final_vdj_df, vdj_df], axis=0)
+			final_clinical_df = common.concat_df([final_clinical_df, clinical_df], axis=0)
+		return final_vdj_df, final_clinical_df
 
 
 	def ingest_data(
 			self,
-			input_clincal_path: str = None,
 			output_clincal_path: str = None,
 		):
-		vdj_df = self.processing_vdj()
-		if input_clincal_path is not None:
-			vdj_df, _ = self.merge_with_clinical_meta(
-				vdj_df,
-				input_clincal_path,
-				output_clincal_path
-			)
-		h5_path = self._write_h5_vdj(vdj_df)
+		"""
+		Save VDJ as h5 format\n
+		Keep clinical metadata as pandas dataframe
+		"""
+		vdj_df, clinical_df = self.processing_vdj()
+		vdj_df, clinical_df = processing.matching_barcodes(
+			vdj_df, clinical_df
+		)
+		processing.write_hdf5_vdj(vdj_df, self.__ouput_h5_path)
+		common.write_csv(clinical_df, output_clincal_path)
 		return {
-			'10X_VDJ': h5_path,
+			'10X_VDJ': self.__ouput_h5_path,
 			'clinical_meta': output_clincal_path
 		}
 
@@ -89,7 +92,7 @@ class ClonotypeToolkits(object):
 	def __init__(
 		self,
 		vdj_h5_path: str,
-		clinical_meta_path: str = None,
+		clinical_meta_path: str,
 	):
 		"""
 		Parameters

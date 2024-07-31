@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class VDJ_10X_CHOSEN_COLUMNS(Enum):
+class VDJ_10X_COLUMNS(Enum):
 	BARCODES='barcodes'
 	IS_CELL='is_cell'
 	HIGH_CONFIDENCE='high_confidence'

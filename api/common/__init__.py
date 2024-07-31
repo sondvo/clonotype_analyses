@@ -5,13 +5,7 @@ import uuid
 import numpy as np
 import pandas as pd
 
-
-def read_pd():
-	return
-
-
-def write_pd():
-	return
+from .constants import VDJ_10X_COLUMNS
 
 
 def mkdir(path):
@@ -105,3 +99,21 @@ def matching_barcodes_idx(arr1, arr2):
 
 def get_file_name(file_path):
 	return file_path.split('/')[-1]
+
+
+def extract_h5(h5_path, key):
+	with h5py.File(h5_path) as f:
+		if key not in h5_path:
+			raise Exception('cannot find {} in h5'.format(key))
+		res = f[key][:]
+	return res
+
+
+def concat_df(df_list, **kwargs):
+	final_df = None
+	for df in df_list:
+		if final_df is None:
+			final_df = df
+		else:
+			final_df = pd.concat([final_df, df], **kwargs)
+	return final_df
