@@ -19,3 +19,4 @@ class VDJ_10X_COLUMNS(Enum):
 	RAW_CONSENSUS_ID='raw_consensus_id'
 	EXACT_SUBCLONOTYPE_ID='exact_subclonotype_id'
 
+SAMPLE_NAME = 'sample_name'

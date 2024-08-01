@@ -46,6 +46,7 @@ def matching_barcodes(vdj_df, meta_df):
 		matched_bc,
 		:
 	]
+	meta_df[VDJ_10X_COLUMNS.BARCODES.value] = meta_df.index.values
 	return vdj_df, meta_df
 
 
