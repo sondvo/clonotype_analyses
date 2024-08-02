@@ -45,7 +45,7 @@ def _init_clonotypes_types(all_cells, meta_key):
 		'2 TRA - 1 TRB': np.zeros(n_cells, dtype=np.bool_),
 		'1 TRA - 2 TRB': np.zeros(n_cells, dtype=np.bool_),
 		'others': np.zeros(n_cells, dtype=np.bool_),
-		meta_key: np.array([''] * n_cells),
+		meta_key: np.array([''] * n_cells, dtype='O'),
 	}
 
 	return fraction_clo_dct
@@ -65,14 +65,14 @@ def _grouping_ratio_clonotype_types(fraction_clo_df, meta_key):
 ## TODO: optimize, remove for loop!
 def create_clonotype_fraction_df(VDJ_10X, keys=['Condition']):
 	VDJ_10X, meta_key = _merge_metadata_fields(VDJ_10X, keys=keys)
-	all_cells = VDJ_10X['barcode'].unique()
+	all_cells = VDJ_10X.index.unique()
 	n_cells = len(all_cells)
 
 	fraction_clo_dct = _init_clonotypes_types(all_cells, meta_key)
 	for i in range(n_cells):
 		bc = all_cells[i]
 		tmp_df = VDJ_10X.iloc[
-			VDJ_10X['barcode'].values == bc,
+			VDJ_10X.index.values == bc,
 			:
 		]
 
