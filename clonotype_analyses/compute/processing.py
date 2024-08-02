@@ -26,7 +26,7 @@ def reformat_clonotypes(vdj_path, preprocessing=True):
 	except Exception as e:
 		raise (e)
 
-	vdj_df = vdj_df.set_index(VDJ_10X_COLUMNS.BARCODES.value)
+	vdj_df = vdj_df.set_index(VDJ_10X_COLUMNS.BARCODE.value)
 
 	if preprocessing:
 		return _preprocessing_clonotypes(vdj_df)
@@ -49,26 +49,27 @@ def matching_barcodes(vdj_df, meta_df):
 		matched_bc,
 		:
 	]
-	meta_df[VDJ_10X_COLUMNS.BARCODES.value] = meta_df.index.values
+	meta_df[VDJ_10X_COLUMNS.BARCODE.value] = meta_df.index.values
 	return vdj_df, meta_df
 
 
-def write_hdf5_vdj(vdj_df, output_h5_path):
+def store_df_as_h5(df, output_h5_path):
 	with common.H5AtomicWriter(output_h5_path) as f:
-		for i in vdj_df.columns:
+		f.create_dataset(VDJ_10X_COLUMNS.BARCODE.value, data=df.index.values.astype('S'))
+		for i in df.columns:
 			try:
-				f.create_dataset(i, data=vdj_df[i].values)
+				f.create_dataset(i, data=df[i].values)
 			except:
-				f.create_dataset(i, data=vdj_df[i].values.astype('S'))
+				f.create_dataset(i, data=df[i].values.astype('S'))
 	return output_h5_path
 
 
 def h5_to_pandas(h5_path, columns):
 	meta_dct = {}
 	with h5py.File(h5_path) as f:
-		bc = f[VDJ_10X_COLUMNS.BARCODES.value][:].astype('str')
+		bc = f[VDJ_10X_COLUMNS.BARCODE.value][:].astype('str')
 		for i in columns:
-			if i == VDJ_10X_COLUMNS.BARCODES.value:
+			if i == VDJ_10X_COLUMNS.BARCODE.value:
 				continue
 			arr = f[i][:]
 			try:

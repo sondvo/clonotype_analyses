@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class VDJ_10X_COLUMNS(Enum):
-	BARCODES='barcode'
+	BARCODE='barcode'
 	IS_CELL='is_cell'
 	HIGH_CONFIDENCE='high_confidence'
 	LENGTH='length'

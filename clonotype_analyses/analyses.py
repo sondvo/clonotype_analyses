@@ -110,8 +110,8 @@ class ClonotypePreprocessing(object):
 				vdj_df, clinical_df
 			)
 
-		processing.write_hdf5_vdj(vdj_df, ouput_vdj_h5_path)
-		processing.write_hdf5_vdj(clinical_df, ouput_clinical_h5_path)
+		processing.store_df_as_h5(vdj_df, ouput_vdj_h5_path)
+		processing.store_df_as_h5(clinical_df, ouput_clinical_h5_path)
 		return {
 			'10X_VDJ': ouput_vdj_h5_path,
 			'clinical_meta': ouput_clinical_h5_path
