@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "clonotype-analyses"
+version = "0.1.0"
+description = ""
+authors = ["Son Vo <duyson1999@gmail.com>"]
+readme = "README.md"
+packages = [{include = "clonotype_analyses"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
