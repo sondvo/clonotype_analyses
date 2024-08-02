@@ -3,6 +3,8 @@ import pandas as pd
 
 from .. import common
 
+from matplotlib import pyplot as plt
+
 
 def _merge_metadata_fields(VDJ_10X, keys=['Condition']):
 	if len(keys) == 1 and keys[0] in VDJ_10X.columns:
@@ -49,6 +51,17 @@ def _init_clonotypes_types(all_cells, meta_key):
 	return fraction_clo_dct
 
 
+def _grouping_ratio_clonotype_types(fraction_clo_df, meta_key):
+	visualize_fraction_clo_df = fraction_clo_df.groupby(meta_key).sum()
+	visualize_fraction_clo_df = visualize_fraction_clo_df.astype(np.float32)
+
+	for i in range(len(visualize_fraction_clo_df)):
+		visualize_fraction_clo_df.iloc[i, :] /= np.sum(visualize_fraction_clo_df.iloc[i, :].values)
+
+	visualize_fraction_clo_df = visualize_fraction_clo_df.sort_index(ascending=False)
+	return visualize_fraction_clo_df
+
+
 ## TODO: optimize, remove for loop!
 def create_clonotype_fraction_df(VDJ_10X, keys=['Condition']):
 	VDJ_10X, meta_key = _merge_metadata_fields(VDJ_10X, keys=keys)
@@ -81,19 +94,8 @@ def create_clonotype_fraction_df(VDJ_10X, keys=['Condition']):
 	return fraction_clo_df, meta_key
 
 
-def grouping_ratio_clonotype_types(fraction_clo_df, meta_key):
-	visualize_fraction_clo_df = fraction_clo_df.groupby(meta_key).sum()
-	visualize_fraction_clo_df = visualize_fraction_clo_df.astype(np.float32)
-
-	for i in range(len(visualize_fraction_clo_df)):
-		visualize_fraction_clo_df.iloc[i, :] /= np.sum(visualize_fraction_clo_df.iloc[i, :].values)
-
-	visualize_fraction_clo_df = visualize_fraction_clo_df.sort_index(ascending=False)
-	return visualize_fraction_clo_df
-
-
 def plotly_ratio_clonotype_types(fraction_clo_df, meta_key):
-	fraction_clo_df = grouping_ratio_clonotype_types(fraction_clo_df, meta_key)
+	fraction_clo_df = _grouping_ratio_clonotype_types(fraction_clo_df, meta_key)
 	reformated_dct = {
 		'Groups': [],
 		'Clonotypes types': [],
@@ -112,7 +114,7 @@ def plotly_ratio_clonotype_types(fraction_clo_df, meta_key):
 
 
 def visualize_ratio_clonotype_types(fraction_clo_df, meta_key):
-	visualize_fraction_clo_df = grouping_ratio_clonotype_types(fraction_clo_df, meta_key)
+	visualize_fraction_clo_df = _grouping_ratio_clonotype_types(fraction_clo_df, meta_key)
 
 	ax = visualize_fraction_clo_df.plot(
 		kind='bar',
