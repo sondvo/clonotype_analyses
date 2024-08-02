@@ -83,7 +83,7 @@ def h5_to_pandas(h5_path, columns):
 
 def merge_vdj_and_clinical_meta(vdj_df, clinical_df):
 	if not np.all(
-		vdj_df.index.unique() == clinical_df.index.unique()
+		np.unique(vdj_df.index.values) == np.unique(clinical_df.index.values)
 	):
 		raise Exception('Barcodes of 2 dataframes must matched')
 
