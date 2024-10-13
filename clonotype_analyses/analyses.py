@@ -33,7 +33,7 @@ class ClonotypePreprocessing(object):
 					'clinical_meta_path': 'root/fol/GSM123_clinical_meta.tsv',
 				}, {...}]
 		"""
-		print ('NOTE: barcodes (first column) of vdj and clinical_meta MUST have similar items')
+		print ('NOTE: barcode (first column) of vdj and clinical_meta MUST have similar items')
 		self.__batch_info = batch_info
 		self.__sample_specific_columns = [
 			VDJ_10X_COLUMNS.RAW_CLONOTYPE_ID.value,
@@ -41,17 +41,9 @@ class ClonotypePreprocessing(object):
 		]
 
 
-	def processing_vdj(self, preprocessing=True):
+	def _processing_vdj(self, preprocessing=True):
 		"""
-		Only keep necessary columns in VDJ file\n
-		Optional: Only keep shared barcodes between VDJ and clinical metadata
-
-		Returns
-		----------
-		vdj_df : pandas.dataframe
-			No index column
-		clinical_meta_df : pandas dataframe
-			Barcodes as index column
+		Only keep necessary columns in VDJ file
 		"""
 		final_vdj_df = None
 		final_clinical_df = None
@@ -60,8 +52,12 @@ class ClonotypePreprocessing(object):
 			vdj_path = info['vdj_path']
 			clinical_path = info['clinical_meta_path']
 
-			vdj_df = processing.reformat_clonotypes(vdj_path, preprocessing)
-			clinical_df = common.read_csv(clinical_path, index_col=0)
+			vdj_df = processing.reformat_clonotypes(
+				vdj_path, preprocessing
+			)
+			clinical_df = common.read_csv(
+				clinical_path, index_col=0
+			)
 
 			if len(prefix):
 				for col in self.__sample_specific_columns:
@@ -72,15 +68,24 @@ class ClonotypePreprocessing(object):
 				clinical_df.index = prefix + '_' + clinical_df.index.values
 				clinical_df[SAMPLE_NAME] = prefix
 
-			final_vdj_df = common.concat_df([final_vdj_df, vdj_df], axis=0)
-			final_clinical_df = common.concat_df([final_clinical_df, clinical_df], axis=0)
+			final_vdj_df = common.concat_df(
+				[final_vdj_df, vdj_df],
+				axis=0
+			)
+			final_clinical_df = common.concat_df(
+				[final_clinical_df, clinical_df],
+				axis=0
+			)
 		return final_vdj_df, final_clinical_df
 
 
-	## For clonotypes, each function require some spefic columns, not all of them. Eg: shannon entropy: [barcodes, raw_clonotype_id]
-	## -> save each column as key in hdf5 -> optimize data on memory
-	## Why not setting barcodes as the outer-most layer? Eg: f['ATGCAT...'].keys() = ['TRA', 'TRB', 'cdr3', ...] ?
-	## -> very few functions require picking some specific barcodes -> not optimize for analyses.
+	# For clonotypes, each function require some spefic columns, not all of them.
+	# Eg: shannon entropy: [barcodes, raw_clonotype_id]
+	# -> save each column as key in hdf5 -> optimize data on memory
+	##
+	# Why not setting barcodes as the outer-most layer?
+	# Eg: f['ATGCAT...'].keys() = ['TRA', 'TRB', 'cdr3', ...] ?
+	# -> very few functions require picking some specific barcodes -> not optimize for analyses.
 	def ingest_data(
 			self,
 			ouput_vdj_h5_path: str,
@@ -101,9 +106,12 @@ class ClonotypePreprocessing(object):
 
 		Returns
 		----------
-		# TODO
+		Saving location: Dict
+			In which:
+				'10X_VDJ': location of VDJ h5\n
+				'clinical_meta': location of clinical meta h5
 		"""
-		vdj_df, clinical_df = self.processing_vdj(preprocessing)
+		vdj_df, clinical_df = self._processing_vdj(preprocessing)
 
 		if intersect_barcodes:
 			vdj_df, clinical_df = processing.matching_barcodes(
@@ -126,15 +134,15 @@ class ClonotypeToolkits(object):
 	):
 		"""
 		Load necessary files for analyses\n
-		NOTE: vdj_h5_path, clinical_h5_path are the outputs from ClonotypePreprocessing.ingest_data()
 
 		Parameters
 		----------
 		vdj_h5_path : str
-			The path to ORIGINAL 10X VDJ files (could be multiple files for multiple samples)
+			vdj_h5_path output from ClonotypePreprocessing.ingest_data()
 		clinical_h5_path : str
-			The path to associate metadata file (eg. include 'condition', 'cell types', ...)\n
+			clinical_h5_path output from ClonotypePreprocessing.ingest_data()
 		"""
+		print ("NOTE: vdj_h5_path, clinical_h5_path are the outputs from ClonotypePreprocessing.ingest_data()")
 		self.__vdj_h5_path = vdj_h5_path
 		self.__clinical_h5_path = clinical_h5_path
 
@@ -143,17 +151,26 @@ class ClonotypeToolkits(object):
 		if not len(meta_keys):
 			raise Exception('Need at least one meta column to compare')
 
-		vdj_df = processing.h5_to_pandas(self.__vdj_h5_path, [VDJ_10X_COLUMNS.CHAIN.value])
-		clinical_df = processing.h5_to_pandas(self.__clinical_h5_path, meta_keys)
-		vdj_df, clinical_df = processing.matching_barcodes(vdj_df, clinical_df)
-		merged_df = processing.merge_vdj_and_clinical_meta(vdj_df, clinical_df)
-		fraction_clo_df, merged_meta_key = clonotypes_QC_fraction.create_clonotype_fraction_df(merged_df, meta_keys)
-		return fraction_clo_df, merged_meta_key
+		vdj_df = processing.h5_to_pandas(
+			self.__vdj_h5_path, [VDJ_10X_COLUMNS.CHAIN.value]
+		)
+		clinical_df = processing.h5_to_pandas(
+			self.__clinical_h5_path, meta_keys
+		)
+		vdj_df, clinical_df = processing.matching_barcodes(
+			vdj_df, clinical_df
+		)
+		merged_df = processing.merge_vdj_and_clinical_meta(
+			vdj_df, clinical_df
+		)
+		return clonotypes_QC_fraction.create_clonotype_fraction_df(
+			merged_df, meta_keys
+		)
 
 
 	def matplotlib_clonotypes_QC_fraction(self, meta_keys=[]):
 		"""
-		Visualize fraction of paired / ambiguous clonotypes separated by metadata fields\n
+		Visualize fraction of paired / ambiguous clonotypes separated by metadata fields.
 
 		Parameters
 		----------
@@ -167,12 +184,14 @@ class ClonotypeToolkits(object):
 		Matplotlib image
 		"""
 		fraction_clo_df, merged_meta_key = self._prepare_clonotypes_QC_fraction(meta_keys)
-		return clonotypes_QC_fraction.visualize_ratio_clonotype_types(fraction_clo_df, merged_meta_key)
+		return clonotypes_QC_fraction.visualize_ratio_clonotype_types(
+			fraction_clo_df, merged_meta_key
+		)
 
 
 	def plotly_clonotypes_QC_fraction(self, meta_keys=[]):
 		"""
-		Produce dataframe for plotly: fraction of paired / ambiguous clonotypes separated by metadata fields\n
+		Produce dataframe for plotly: fraction of paired / ambiguous clonotypes separated by metadata fields.
 
 		Parameters
 		----------
@@ -186,7 +205,9 @@ class ClonotypeToolkits(object):
 		Pandas dataframe using for plotly
 		"""
 		fraction_clo_df, merged_meta_key = self._prepare_clonotypes_QC_fraction(meta_keys)
-		return clonotypes_QC_fraction.plotly_ratio_clonotype_types(fraction_clo_df, merged_meta_key)
+		return clonotypes_QC_fraction.plotly_ratio_clonotype_types(
+			fraction_clo_df, merged_meta_key
+		)
 
 
 
