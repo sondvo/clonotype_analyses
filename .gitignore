@@ -163,8 +163,4 @@ cython_debug/
 
 # heavy file/folder
 GSE185381_TCR/*h5ad
-GSE185381_TCR/clinical_metadata.tsv
-GSE185381_TCR/clonotypes/merged_filtered_clonotype.tsv
-GSE185381_TCR/clonotypes/filtered_clonotypes/
 GSE185381_TCR/clonotypes/original_clonotypes/
-GSE185381_TCR_for_API/
