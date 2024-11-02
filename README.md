@@ -11,7 +11,7 @@
 	- cdr3 length
 	- clonotype diversity on embedding
 	- clonotype tracing
-- Every analysis will have charts from both [matplotlib](./TCR_analysis_cleanup.ipynb) and [plotly](./html_plot.py)
+- Every analysis will have charts from both [matplotlib](./TCR_analysis.ipynb) and [plotly](./html_plot.py)
 
 
 ### Example dataset: GSE185381
